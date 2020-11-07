@@ -34,6 +34,10 @@ def click_ad(xpath):
 
 def find_stat(css, context):
     return context.find_element_by_css_selector(css).text
+
+def get_random_users(num_users, driver):
+    random_users = []
+    return random_users
     
 #ADVERTISEMENT XPATH //*[@id="assets"]/polygon
 stats = []
