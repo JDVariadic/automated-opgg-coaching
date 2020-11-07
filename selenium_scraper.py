@@ -37,8 +37,8 @@ def find_stat(css, context):
     
 #ADVERTISEMENT XPATH //*[@id="assets"]/polygon
 stats = []
-users = [('HULKSMASH1337', 'NA'), ('Revenge', 'NA'), ('ZED99', 'KR')]
-num_matches = 200
+users = [('HULKSMASH1337', 'NA')]
+num_matches = 1
 driver = webdriver.Chrome('D:/Intel Files/Desktop/Scraper Project/chromedriver.exe')
 driver.maximize_window()
 link = {
@@ -47,7 +47,7 @@ link = {
     'EUW': 'eu.op.gg',
 }
 games_per_tab = 20
-press_read_more = math.ceil(num_matches / games_per_tab)
+press_read_more = math.floor(num_matches / games_per_tab)
 for user, region in users:
     driver.get('https://' + link[region] + '/summoner/userName=' + user)
     
@@ -91,9 +91,13 @@ for user, region in users:
             control_wards_bought = current_match.find_element_by_class_name('Trinket').text
         except:
             control_wards_bought = 0
+        
+        spell_list = []
+        spells = current_match.find_elements_by_class_name('Spell')
+        
+        for spell in spells:
+            spell_list.append(spell.find_element_by_tag_name('img').get_attribute('alt'))
             
-        
-        
         stats.append({
                 'Game Type': game_type,
                 'Match ID': current_game_id,
@@ -107,6 +111,8 @@ for user, region in users:
                 'Total CS': total_cs,
                 'Control Wards Bought': control_wards_bought,
                 'User Level': user_level,
+                'D_spell': spell_list[0],
+                'F_spell': spell_list[1]
         })
         
         
