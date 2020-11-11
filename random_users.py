@@ -110,8 +110,8 @@ for key, value in num_players_per_rank.items():
         user_list = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'ranking-table__row')))
         #Keep appending usernames in a list until all 100 have been passed through
         for item in user_list:
-            if len(players[key]) < values:
-                summoner = user_list[i].find_element_by_class_name('select_summoner')
+            if len(players[key]) < value:
+                summoner = item.find_element_by_class_name('select_summoner')
                 summoner_name = summoner.find_element_by_tag_name('span').text
                 players[key].append(summoner_name)
             else: 
