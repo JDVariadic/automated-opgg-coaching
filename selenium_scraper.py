@@ -42,8 +42,8 @@ def get_random_users(num_users, driver):
 #ADVERTISEMENT XPATH //*[@id="assets"]/polygon
 stats = []
 users = [('HULKSMASH1337', 'NA')]
-num_matches = 1
-driver = webdriver.Chrome('D:/Intel Files/Desktop/Scraper Project/chromedriver.exe')
+num_matches = 100
+driver = webdriver.Chrome('chromedriver.exe')
 driver.maximize_window()
 link = {
     'NA': 'na.op.gg',

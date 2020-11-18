@@ -20,7 +20,8 @@ link = {
     'EUW': 'eu.op.gg',
 }
 
-driver = webdriver.Chrome('D:/Intel Files/Desktop/Scraper Project/chromedriver.exe')
+#D:/Intel Files/Desktop/Scraper Project/chromedriver.exe
+driver = webdriver.Chrome('chromedriver.exe')
 #driver.maximize_window()
 #driver.get('https://' + link[region] + 'ranking/ladder')
 driver.get('https://na.op.gg/ranking/ladder/')
@@ -44,7 +45,7 @@ value_list = []
 num_players_source = driver.find_element_by_class_name('Text').text
 NUM_PLAYERS = int(re.sub('\D', '', num_players_source))
 PLAYERS_PER_PAGE = 100
-num_users = 50
+num_users = 1000
 rank_page_boundaries = {}
 
 #Upper Bound of search for each rank distribution
