@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import re
 import random
 import math
-from collections import OrderedDict
+import pandas as pd
 #driver = webdriver.Chrome('D:/Intel Files/Desktop/Scraper Project/chromedriver.exe')
 #C:/Users/Jared/Desktop/automated-opgg-coaching/chromedriver.exe
 link = {
@@ -117,14 +117,23 @@ for key, value in num_players_per_rank.items():
             else: 
                 break
 
+final_players = []
 
 for key, value in players.items():
     print(value)
-    '''
-    num_player = num_players_per_rank[key]
-    for i in range(num_player):
-        players[rank].append('testing')
-    '''
+    for player in value:
+        final_players.append({'Player': player, 'Rank': rank})
+    
+
+    
+df = pd.DataFrame(final_players)
+df.to_csv('players.csv')
+
+'''
+num_player = num_players_per_rank[key]
+for i in range(num_player):
+    players[rank].append('testing')
+'''
 
 '''
 for rank in random_items:
