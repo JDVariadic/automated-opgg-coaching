@@ -8,20 +8,16 @@ import time
 from bs4 import BeautifulSoup
 import requests
 
-def scrape_high_elo_data():
+def scrape_high_elo_data(region):
+    link = {
+        'NA': 'na.op.gg',
+        'KR': 'www.op.gg',
+        'EUW': 'eu.op.gg',
+    }
     driver = webdriver.Chrome('chromedriver.exe')
-    driver.get('https://www.op.gg/ranking/ladder/')
-    page = requests.get('http://google.com')
+    driver.get('https://' + link[region] + '/ranking/ladder/')
     html = driver.page_source
     soup = BeautifulSoup(html, features='lxml')
-    #print(soup.prettify())
-    
-    #class: ranking-table__row 
-    
-    '''
-    For top 4: id="select_summoner_highest" <div>
-    For the rest: class="ranking-table" <table>
-    '''
     top_5 = soup.find(id='select_summoner_highest')
     other_top_players = soup.find('table', class_='ranking-table')
     top_players_cell = other_top_players.find_all('tr', class_='ranking-table__row')
@@ -32,6 +28,9 @@ def scrape_high_elo_data():
     top_5_users = [user.get_text() for user in top_players_names]
     top_players_users = [user.get_text() for user in other_players_names]
     top_users_total = top_5_users + top_players_users
-    print(top_users_total)
+    user_dict = {region: top_users_total}
+    print(user_dict)
     driver.close()
+    return user_dict
+    
 

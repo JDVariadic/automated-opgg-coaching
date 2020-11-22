@@ -6,7 +6,7 @@ import math
 import pandas as pd
 import time
 
-def get_user_data():
+def get_user_data(user_list, region):
     def click_element(xpath):
         element = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, xpath))
@@ -34,10 +34,11 @@ def get_user_data():
         
     #ADVERTISEMENT XPATH //*[@id="assets"]/polygon
     stats = []
-    users = [('HULKSMASH1337', 'NA')]
+    #users = [('HULKSMASH1337', 'NA')]
+    users = user_list[region]
+    print(users)
     num_matches = 50
-    driver = webdriver.Chrome('chromedriver.exe')
-    driver.maximize_window()
+    
     link = {
         'NA': 'na.op.gg',
         'KR': 'www.op.gg',
@@ -45,7 +46,8 @@ def get_user_data():
     }
     games_per_tab = 20
     press_read_more = math.floor(num_matches / games_per_tab) + 1
-    for user, region in users:
+    for user in users:
+        driver = webdriver.Chrome('chromedriver.exe')
         driver.get('https://' + link[region] + '/summoner/userName=' + user)
         
         for i in range(press_read_more):
