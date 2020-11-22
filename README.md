@@ -1,4 +1,4 @@
-# Installaton Instructions
+# Installation Instructions
 Install the necessary libraries before running any code.
 
 ## Using pip
