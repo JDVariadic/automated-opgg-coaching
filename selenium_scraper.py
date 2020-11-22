@@ -116,7 +116,7 @@ def get_user_data():
             
         
         df = pd.DataFrame(stats)
-        df.to_csv('league_data.csv')
+        df.to_csv('csv_files/league_data.csv')
         driver.close()
     
 

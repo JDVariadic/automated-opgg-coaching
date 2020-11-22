@@ -6,6 +6,10 @@ Install the necessary libraries before running any code.
 pip install -r requirements.txt
 ```
 
+## Installing chromedriver
+League of Legends scraper uses chromedriver. 
+Download chromedriver here: https://chromedriver.chromium.org/downloads
+
 # File Overview
 
 ## main.py
